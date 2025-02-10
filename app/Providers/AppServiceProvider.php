@@ -24,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $settings = Settings::first();
-        // if ($settings) {
-        //     if (isset($settings->companyName) && $settings->companyName) {
-        //         config('app.name', $settings->companyName);
-        //     }
-        // }
+        $settings = Settings::first();
+        if ($settings) {
+            if (isset($settings->companyName) && $settings->companyName) {
+                config('app.name', $settings->companyName);
+            }
+        }
     }
 }
