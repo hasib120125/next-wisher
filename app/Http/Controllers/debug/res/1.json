@@ -1,0 +1,8 @@
+{
+    "depositId": "01fd933c-7ecb-4fac-ad4b-e4392504dea4",
+    "status": "REJECTED",
+    "rejectionReason": {
+        "rejectionCode": "INVALID_PAYER_FORMAT",
+        "rejectionMessage": "Invalid provided country code for the identified country ZMB"
+    }
+}

@@ -1,0 +1,1 @@
+{"depositId":"d6e07820-5f03-4a60-a8d5-10c8de00d994","status":"REJECTED","rejectionReason":{"rejectionCode":"INVALID_PAYER_FORMAT","rejectionMessage":"Only numbers are accepted. No whitespaces, separators or prefixes like + or 0 are allowed"}}
