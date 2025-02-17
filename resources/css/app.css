@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root{
+    --header-bg-color: #2b2c3b;
+    --footer-bg-color: #333;
+    --text-color: #444;
+    --link-color: #fb5214;
+    --notification-badge-color: #f75c5d;
+    --offCanvas-bg-color: #f75c5d;
+    --btn-bg-color: #f75c5d;
+    --btn-text-color: #fff;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    font-weight: 400;
+    scroll-behavior: smooth;
+}
+
+html, body, #app {
+    @apply h-full;
+}
+
+.customRatio {
+    aspect-ratio: 4/5;
+}
+.customVideoRatio {
+    @apply h-[360px] rounded-[8px];
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+}
+
+.noScrollbarHeight::-webkit-scrollbar {
+    height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0005;
+}
+
+progress[value]{
+    height: 10px;
+    width: 100%;
+}
+progress[value]::-webkit-progress-value {
+    background-image:
+        -webkit-linear-gradient(-45deg, 
+                                transparent 33%, rgba(0, 0, 0, .1) 33%, 
+                                rgba(0,0, 0, .1) 66%, transparent 66%),
+        -webkit-linear-gradient(top, 
+                                rgba(255, 255, 255, .25), 
+                                rgba(0, 0, 0, .25)),
+        -webkit-linear-gradient(left, #09c, #f44);
+
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+.swal2-icon {
+    /* width: 3em !important;
+    height: 3em !important; */
+    transform: scale(0.7);
+    margin: 1em auto 0em !important;
+}
+
+.swal2-icon .swal2-icon-content {
+    font-size: 2.75em !important;
+}
+
+
+.swal2-title {
+    font-size: 1.5em !important;
+    padding: 8px 1em 0 !important;
+}
+.swal2-html-container {
+    margin: 0.1em 1.6em .3em !important;
+}
+
+.swal2-actions {
+    margin: 0.5em auto 0 !important;
+}
+
+.swal2-styled {
+    padding: 0.4em 1.1em !important;
+}
+
+/* ::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+} */
+
+.swal2-icon.swal2-success [class^=swal2-success-line][class$=long] {
+    /* top: 21px !important;
+    width: 76% !important;
+    right: unset !important; */
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line][class$=long] {
+    /* top: 23px !important;
+    width: 53% !important;
+    right: 8px !important; */
+}
+
+.swal2-styled.swal2-confirm{
+    background-color: #54a354 !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-fix{
+    /* display: none !important; */
+}
