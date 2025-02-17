@@ -4,9 +4,9 @@
         <div class="px-4 min-h-[602px] h-full">
             <div class="container mx-auto py-5">
                 <div class="flex justify-center items-center relative">
-                    <button @click="back" class="absolute left-0">
+                    <!-- <button @click="back" class="absolute left-0">
                         <AngleLeftIcon />
-                    </button>
+                    </button> -->
                     <MemberCard
                         class="capitalize"
                         :name="$page.props.talent.name"

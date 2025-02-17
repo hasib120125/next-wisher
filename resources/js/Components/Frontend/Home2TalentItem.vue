@@ -78,7 +78,8 @@ import { Inertia } from '@inertiajs/inertia'
     })
 
     const handleClick = (user, authUser) => {
-        if (user && authUser) {
+        // if (user && authUser) {
+        if (true) {
             Inertia.get(route('item.details', {
                 id: user.id,
                 username: `${String(user.username ?? user.name).toLowerCase().replaceAll(' ', '-')}`

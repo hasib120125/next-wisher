@@ -26,6 +26,7 @@ onMounted(() => {
             makeVisitors(payload)
         }, hitDelay)
     }, hitDelay)
+    makeVisitors(payload)
 })
 
 onUnmounted(() => {

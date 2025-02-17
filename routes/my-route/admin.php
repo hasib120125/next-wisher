@@ -46,7 +46,9 @@ Route::middleware(['auth', 'verified', 'user-role:admin', 'verify_security_code'
     Route::get('/admin/dashboard/talent-earnings', [AdminPaymentController::class, 'talentEarnings'])->name('admin.talentEarnings');
     Route::post('/admin/dashboard/pay-talent/{id}', [AdminPaymentController::class, 'talentPay'])->name('admin.talentPay');
     Route::post('/admin/dashboard/cancel-pay-talent/{id}', [AdminPaymentController::class, 'talentPayCancel'])->name('admin.TalentPayCancel');
-
+    
+    Route::get('/admin/dashboard/our-celebrities', [TalentController::class, 'ourCelebrities'])->name('admin.ourCelebrities');
+    Route::post('/admin/dashboard/get-our-celebrities', [TalentController::class, 'getOurCelebrities'])->name('admin.getOurCelebrities');
     Route::get('/admin/dashboard/talent-applications', [TalentController::class, 'applications'])->name('admin.talent.applications');
     Route::post('/admin/dashboard/approve-talent/{id}', [TalentController::class, 'approve'])->name('talent.approve');
 
@@ -58,10 +60,6 @@ Route::middleware(['auth', 'verified', 'user-role:admin', 'verify_security_code'
 
     Route::get('/admin/dashboard/talent/{user}', [TalentController::class, 'details'])->name('admin.talent.detail');
     Route::get('/admin/dashboard/payment-controls', [TalentController::class, 'BalanceControl'])->name('admin.talent.payment_controls');
-    
-    Route::get('/admin/dashboard/our-celebrities', [TalentController::class, 'ourCelebrities'])->name('admin.ourCelebrities');
-    Route::post('/admin/dashboard/get-our-celebrities', [TalentController::class, 'getOurCelebrities'])->name('admin.getOurCelebrities');
-    
     Route::post('/admin/dashboard/{id}/payment-controls-approve', [MailController::class, 'adminBalanceControl'])->name('admin.talent.payment_controls_approve');
     Route::post('/admin/dashboard/{user}/{id}/payment-transfer', [TalentController::class, 'transfer_balance'])->name('admin.talent.transfer_balance');
     Route::post('/admin/dashboard/{user}/{id}/payment-cancel', [TalentController::class, 'cancel_balance'])->name('admin.talent.cancel_balance');

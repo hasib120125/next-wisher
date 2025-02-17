@@ -75,7 +75,7 @@ class UserPaymentController extends Controller
                 $data['instructions'] = @$request->wishDetails['instructions'];
             }
             // Stripe::setApiKey('sk_test_51M1lgfDKrpdPsiSpLhcMQpw5KDBjuvQ5JPk4HK0tLwKK0GTFCcBaJ0nzfucRon3TamvVkwtcmolyMMMFbkH89Zmx00iODMPc7p');
-            Stripe::setApiKey($settings->stripePrivatKey);
+            Stripe::setApiKey($this->settings->stripePrivatKey);
 
             $paidAmount = $data['amount'] + $data['maintenance_charge_amount'];
             // $authUser = User::find(auth()->id());
@@ -191,7 +191,7 @@ class UserPaymentController extends Controller
     }
 
     public function mobile_pay(Request $request, $id) {
-        $token = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJiODcyZWM3Mi03Yzc5LTQyYmYtYjJjMi1jOTI3YTlhZTRiZWYiLCJzdWIiOiIyODkiLCJpYXQiOjE2OTY5Mjg5NDcsImV4cCI6MjAxMjU0ODE0NywicG0iOiJEQUYsUEFGIiwidHQiOiJBQVQifQ.6PjgueSxR00iO-iUpCbHn7BxXnVrJ1Wzm35glaxSNnw";
+        $token = env('PAWAPAY_TOKEN');
 
         $apiEndpoint = "https://api.sandbox.pawapay.cloud/deposits";
 

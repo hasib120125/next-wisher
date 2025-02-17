@@ -5,6 +5,7 @@ namespace App\Utils;
 class CurlUtils
 {
     public $ch;
+    public $headers;
 
     public function __construct(public $url)
     {
@@ -22,6 +23,11 @@ class CurlUtils
         }
 
         return $result;
+    }
+
+    public function setHeader($headers=[]) {
+        curl_setopt($this->ch, CURLOPT_HTTPHEADER, $headers);
+        return $this;
     }
 
     public function post($data = [], $headers = [])

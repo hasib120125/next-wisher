@@ -33,7 +33,7 @@ class FrontendController extends Controller
         // FeaturedVideo
         $featured_videos = FeaturedVideo::where('status', 1)->orderBy('created_at', 'desc')->get();
 
-        $componentName = auth()->check() ? 'Home3' : 'Home3';
+        $componentName = auth()->check() ? 'Home4' : 'Home4';
         
         return Inertia::render('Frontend/'.$componentName, [
             'countries' => $countries,

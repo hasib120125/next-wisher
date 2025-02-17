@@ -360,14 +360,13 @@ class TalentController extends Controller
                 return redirect()->back()->with('message', 'Talent Approved Successfully');
             } else {
                 $user_count = User::where('role', 'talent')
-                                        ->where('email', 'like', '%'.$talent->email.'%')
-                                        ->where('status', 2)
-                                        ->count();
+                    ->where('email', 'like', '%'.$talent->email.'%')
+                    ->where('status', 2)
+                    ->count();
                 try {
                     file_put_contents(storage_path('temp/'.$talent->id.'.txt'), json_encode($talent));
                     Mail::to($talent)->send(new RejectMail($talent));
                 } catch (\Throwable $th) {}
-
                 $talent->update([
                     'status' => 2,
                     'email' => $talent->email.' ('.($user_count+1).') - Time(s)',

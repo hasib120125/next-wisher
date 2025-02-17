@@ -3,7 +3,7 @@
     <Master>
         <div 
             
-            :class="route().current('item.preview') ? 'fixed top-0 left-0 w-full h-full bg-slate-800/80 z-50 flex items-center justify-center' : 'pt-14'"
+            :class="route().current('item.preview') ? 'fixed top-0 left-0 w-full h-full bg-slate-800/80 z-50 flex items-center justify-center' : 'xl:pt-14 pt-4'"
             @click.self="backSelf(route().current('item.preview'))"
         >
             <button 
@@ -22,7 +22,7 @@
                 :class="route().current('item.preview') ? 'bg-white rounded-md flex py-5 xl:max-w-[75vw] justify-center w-full max-h-[80vh] h-full overflow-y-auto' : ''"
             >
                 <div class="container mx-auto relative xl:max-w-[1000px] max-w-full  w-full">
-                    <button
+                    <!-- <button
                         v-if="!route().current('item.preview')"
                         @click="back" 
                         type="button" 
@@ -31,8 +31,7 @@
                     >
                         <CloseIcon v-if="route().current('item.preview')" />
                         <AngleLeftIcon v-else class="md:-translate-x-[140px]" />
-                    </button>
-                    <!-- old class with calender (grid grid-cols-3 gap-6)  -->
+                    </button> -->
                     <TalentProfileInfo 
                         class="md:hidden block md:max-w-full max-w-[350px] mx-auto mb-6" 
                         :talent="talent"

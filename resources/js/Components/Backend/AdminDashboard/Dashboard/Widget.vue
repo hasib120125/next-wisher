@@ -5,7 +5,7 @@
                 {{ Helper.translate('REVENUE') }} 
             </div>
             <div class="p-4 items-center justify-center font-bold flex gap-1">
-                {{ Helper.priceFormate(get(earnings, 'revenue')) }}  
+                {{ Helper.priceFormate(price_floor(get(earnings, 'revenue'))) }}  
             </div>
         </div>
 
@@ -14,7 +14,7 @@
                 {{ Helper.translate('PENDING') }}  
             </div>
             <div class="p-4 items-center justify-center font-bold flex gap-1">
-                {{ Helper.priceFormate(get(earnings, 'pending')) }} 
+                {{ Helper.priceFormate(price_floor(get(earnings, 'pending'))) }} 
             </div>
         </div>
         <div class="border-2 border-[#545454] shadow-lg rounded overflow-hidden">
@@ -22,7 +22,7 @@
                 {{ Helper.translate('SERVICE FEE') }} 
             </div>
             <div class="p-4 items-center justify-center font-bold flex gap-1">
-                {{ Helper.priceFormate(get(earnings, 'service_fee'), true) }} 
+                {{ Helper.priceFormate(price_floor(get(earnings, 'service_fee')), true) }} 
             </div>
         </div>
         <div class="border-2 border-[#299740] shadow-lg rounded overflow-hidden">
@@ -30,7 +30,7 @@
                 {{ Helper.translate('PROFITS') }} 
             </div>
             <div class="p-4 items-center justify-center font-bold flex gap-1">
-                {{ Helper.priceFormate(get(earnings, 'net_revenue')) }} 
+                {{ Helper.priceFormate(price_floor(get(earnings, 'net_revenue'))) }} 
             </div>
         </div>
     </div>
@@ -49,12 +49,12 @@
             <tr class="rounded-xl relative text-white font-bold">
                 <td class="w-[120px] pl-8 py-3 border-0  bg-red-500 rounded-l-xl">{{ Helper.translate('WISH') }}</td>
                 <td class="text-center  bg-red-500 border-0">{{ Helper.translate(get(earnings, 'wish.count'), true) }}</td>
-                <td class="text-right pr-8  bg-red-500 border-0 rounded-r-xl">{{ Helper.priceFormate(get(earnings, 'wish.amount'), true) }}</td>
+                <td class="text-right pr-8  bg-red-500 border-0 rounded-r-xl">{{ Helper.priceFormate(price_floor(get(earnings, 'wish.amount')), true) }}</td>
             </tr>
             <tr class="relative py-1 text-white font-bold">
                 <td class="w-[120px] pl-8 py-3 bg-sky-500 rounded-l-xl">{{ Helper.translate('TIPS') }}</td>
                 <td class="text-center bg-sky-500">{{ Helper.translate(get(earnings, 'tips.count'), true) }}</td>
-                <td class="text-right pr-8 bg-sky-500 rounded-r-xl">{{ Helper.priceFormate(get(earnings, 'tips.amount'), true) }}</td>
+                <td class="text-right pr-8 bg-sky-500 rounded-r-xl">{{ Helper.priceFormate(price_floor(get(earnings, 'tips.amount')), true) }}</td>
             </tr>
             <!-- <div class="flex justify-between  relative py-1 px-3 rounded-xl bg-black text-white">
                 <div class="md:w-[120px] flex-1 flex-shrink-0">{{ Helper.translate('MY LIFE') }}</div>
@@ -77,5 +77,13 @@ import { get } from 'lodash';
 import useAdminAnalytics from '@/Pages/Backend/AdminDashboard/useAdminAnalytics';
 
 const { earnings } = useAdminAnalytics();
+
+const price_floor = (amount) => {
+    let floored = 0;
+    try {
+        floored = parseFloat(Number(amount).toFixed(2))
+    } catch (error) {}
+    return floored;
+}
 
 </script>

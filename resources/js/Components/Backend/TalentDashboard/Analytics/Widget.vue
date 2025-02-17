@@ -7,7 +7,7 @@
                 <!-- ({{ Helper.translate(get(earnings, 'wish.count'), true) }}) -->
             </div>
             <div class="p-4 items-center justify-center font-bold flex gap-1">
-                {{ Helper.priceFormate(get(earnings, 'wish.amount')) }} 
+                {{ Helper.priceFormate(price_floor(get(earnings, 'wish.amount'))) }} 
                 <!-- <span class="text-[15px] text-sky-500">({{ Helper.translate(get(earnings, 'wish.count'), true) }})</span> -->
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <!-- ({{ Helper.translate(get(earnings, 'tips.count'), true) }}) -->
             </div>
             <div class="p-4 items-center justify-center font-bold flex gap-1">
-                {{ Helper.priceFormate(get(earnings, 'tips.amount')) }} 
+                {{ Helper.priceFormate(price_floor(get(earnings, 'tips.amount'))) }} 
                 <!-- <span class="text-[15px] text-orange-400">({{ Helper.translate(get(earnings, 'tips.count'), true) }})</span> -->
             </div>
         </div>
@@ -68,4 +68,14 @@ import Helper from '@/Helper';
 import { get } from 'lodash'
 
 const { earnings } = useAnalytics();
+
+
+const price_floor = (amount) => {
+    let floored = 0;
+    try {
+        floored = parseFloat(Number(amount).toFixed(2))
+    } catch (error) {}
+    return floored;
+}
+
 </script>

@@ -9,7 +9,7 @@
         </div>
         <div class="space-y-2 text-[15px]">
             <p>{{ Helper.translate("Present yourself and always mention the platform (Nextwisher).") }}</p>
-            <p>{{ Helper.translate('Feel free to personalize your presentation message. The video should not exceed 15 MB') }}</p>
+            <p>{{ Helper.translate('Feel free to personalize your presentation message. The video should not exceed 50 MB') }}</p>
         </div>
     </div>
 </template>

@@ -4,9 +4,9 @@
         <div class="px-4">
             <div class="container mx-auto py-5">
                 <div class="flex">
-                    <button @click="back" type="button" class="mt-2 md:w-12 md:h-12 w-6 h-6">
+                    <!-- <button @click="back" type="button" class="mt-2 md:w-12 md:h-12 w-6 h-6">
                         <AngleLeftIcon />
-                    </button>
+                    </button> -->
                     <MemberCard
                         class="sm:mx-auto"
                         :name="Helper.translate(talent.name)"

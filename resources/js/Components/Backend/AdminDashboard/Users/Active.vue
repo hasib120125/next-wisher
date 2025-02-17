@@ -56,9 +56,9 @@
                                     <BlockIcon class="w-4 h-4" />
                                     <!-- <CloseIcon class="w-4 h-4" /> -->
                                 </button>
-                                <!-- <button @click="handleDeleteUser(user.id, true)" class="bg-red-400 px-2 py-1 rounded text-white text-sm font-bold block">
+                                <button @click="handleDeleteUser(user.id, true)" class="bg-red-400 px-2 py-1 rounded text-white text-sm font-bold block">
                                     <DeleteIcon class="w-4 h-4" />
-                                </button> -->
+                                </button>
                             </td>
                         </tr>
                     </tbody>

@@ -30,7 +30,7 @@ return new class extends Migration
             $table->tinyInteger('is_agree')->default(1)->nullable();
             $table->rememberToken();
             $table->string('role')->default('admin')->nullable();
-            $table->integer('suspend')->default(0);
+            $table->integer('suspend')->default(0)->nullable();
             $table->text('note_email')->nullable();
             $table->timestamps();
             $table->softDeletes();

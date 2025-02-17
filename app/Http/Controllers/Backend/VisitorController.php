@@ -339,39 +339,32 @@ class VisitorController extends Controller
     }
 }
 
-/**
 
-let now = 50;
-let prev = 100;
-let percent = ((100 * now) / prev) - 100;
-
-
-[
-    [
-        'type' => 'hour', if today else date
-        'visitors' => 54,
-        'hits' => 5404,
-    ],
-]
+// let now = 50;
+// let prev = 100;
+// let percent = ((100 * now) / prev) - 100;
 
 
-[
-    [
-        'country' => 'Bangladesh',
-        'visitors' => 54,
-        'hits' => 5404,
-    ],
-]
-[
-    [
-        'device' => 'Windows',
-        'visitors' => 54,
-        'hits' => 5404,
-    ],
-]
+// [
+//     [
+//         'type' => 'hour', if today else date
+//         'visitors' => 54,
+//         'hits' => 5404,
+//     ],
+// ]
 
 
-
-
-
- */
+// [
+//     [
+//         'country' => 'Bangladesh',
+//         'visitors' => 54,
+//         'hits' => 5404,
+//     ],
+// ]
+// [
+//     [
+//         'device' => 'Windows',
+//         'visitors' => 54,
+//         'hits' => 5404,
+//     ],
+// ]

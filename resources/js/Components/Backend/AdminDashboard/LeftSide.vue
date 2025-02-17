@@ -16,11 +16,17 @@
                 {{ Helper.translate('Analytics') }}
             </Link>
             <Link 
-                class="px-4 py-1 border font-semibold text-gray-400 rounded"
+                class="px-4 py-1 border font-semibold text-gray-400 rounded relative"
                 :class="route().current('admin.payments') ? 'bg-sky-500 text-gray-50' : ''"
                 :href="route('admin.payments')"
             >
                 {{ Helper.translate('Payments') }}
+                <span
+                    v-if="get($page.props, 'payout_request_count')"
+                    class="text-[10px] bg-red-400 w-6 h-6 flex items-center justify-center rounded-full text-white absolute top-[5px] right-0 transform translate-x-1/2 -translate-y-1/2"
+                >
+                    {{ get($page.props, 'payout_request_count') }}
+                </span>
             </Link>
             <Link 
                 class="px-4 py-1 border font-semibold text-gray-400 rounded"
@@ -28,6 +34,13 @@
                 :href="route('admin.talentEarnings')"
             >
                 {{ Helper.translate('Talent earnings') }}
+            </Link>
+            <Link 
+                class="px-4 py-1 border font-semibold text-gray-400 rounded"
+                :class="route().current('admin.ourCelebrities') ? 'bg-sky-500 text-gray-50' : ''"
+                :href="route('admin.ourCelebrities')"
+            >
+                {{ Helper.translate('Our Celebrities') }}
             </Link>
         </div>
 
@@ -37,7 +50,7 @@
                 :class="route().current('admin.talent.applications') ? 'bg-[#130121] text-white' : ''"
                 :href="route('admin.talent.applications')"
             >
-                {{ Helper.translate('T-Applications') }}
+                {{ Helper.translate('T-Verifications') }}
                 <span v-if="get($page.props, 'pendingApplicationCount')" class="text-[10px] bg-red-400 w-6 h-6 flex items-center justify-center rounded-full text-white absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">
                     {{ get($page.props, 'pendingApplicationCount') }}
                 </span>
@@ -62,6 +75,12 @@
                 :href="route('admin.talent.payment_controls')"
             >
                 {{ Helper.translate('Wish Track') }}
+                <span
+                    v-if="get($page.props, 'pending_wish_track')"
+                    class="text-[10px] bg-red-400 w-6 h-6 flex items-center justify-center rounded-full text-white absolute top-[5px] right-0 transform translate-x-1/2 -translate-y-1/2"
+                >
+                    {{ get($page.props, 'pending_wish_track') }}
+                </span>
             </Link>
             <Link 
                 class="px-4 py-1 border font-semibold hover:bg-[#130121] hover:text-white rounded relative"

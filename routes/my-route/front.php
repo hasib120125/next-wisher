@@ -22,8 +22,7 @@ Route::post('/visit', [VisitorController::class, 'visit'])->name('visit');
 Route::get('/media/{path}', [PostController::class, 'getVideo']);
 
 Route::post('/search', [FrontendController::class, 'search'])->name('search');
+
 Route::get('/hire-celebrities', [FrontendController::class, 'hireCelebrities'])->name('hireCelebrities');
 
 Route::post('/save-hire', [FrontendController::class, 'saveHire'])->name('saveHire');
-
-

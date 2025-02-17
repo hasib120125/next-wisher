@@ -42,6 +42,13 @@
                             >
                                 {{ Helper.translate('Change Password') }}
                             </button>
+                            <button 
+                                @click="detailsActiveComponent = 'ProfileVideo'"
+                                class="border px-2 py-1 rounded w-full text-left"
+                                :class="detailsActiveComponent == 'ProfileVideo' && 'bg-gray-100'"
+                            >
+                                {{ Helper.translate('Profile Video') }}
+                            </button>
                         </div>
                     </div>
                 </div>

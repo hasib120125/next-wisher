@@ -1,6 +1,8 @@
+import Helper from '@/Helper';
 import axios from 'axios';
-import { isEmpty } from 'lodash';
+import { isEmpty, get } from 'lodash';
 import { ref, watch } from 'vue'
+import Swal from 'sweetalert2'
 
 const onlineVisitors = ref({
     talents: 0,
@@ -22,6 +24,7 @@ const userSummery = ref({
     talent_applications_approved: 0,
 })
 
+const rejectPopup = ref(false)
 const visitorsAnalyticsDate = ref([])
 const visitorsDemographyDate = ref([])
 const hitDelay = 19 * 1000
@@ -61,8 +64,40 @@ export default function useVisitors(){
         // getVisitorsAnalyticsDate()
     }
 
+    const showDeclinePopup = () => {
+        Swal.fire({
+            title: Helper.translate('Your account is suspended'),
+            html: `
+                ${Helper.translate('We were not able to approve your account for some reason.')} </br>
+                ${Helper.translate('Please contact us at support@nextwisher.com ')}
+            `,
+            icon: 'warning',
+            confirmButtonColor: '#4acb6f',
+            cancelButtonColor: '#ef4444',
+            confirmButtonText: Helper.translate('Ok'),
+            showCancelButton: false,
+            showConfirmButton: true
+        })
+        .then(() => {
+            location.reload()
+        })
+    
+        // Swal.getConfirmButton().onclick = () => {
+        //     console.log('some')
+        //     Swal.clickCancel()
+        // }
+    }
+
+    let blockVisit = false
     const makeVisitors = (payload) => {
+        if(blockVisit) return
         axios.post(route('visit', payload))
+            .then(res => {
+                if(get(res, 'data.suspend_popup') == true) {
+                    showDeclinePopup()
+                    blockVisit=true
+                }
+            })
     }
 
     return {

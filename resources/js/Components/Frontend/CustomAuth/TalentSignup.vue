@@ -104,6 +104,15 @@
             </div>
         </div>
 
+        <div class="relative">
+            <CInput type="password" placeholder="Password" v-model="form.password" class="mb-6" />
+            <span class="absolute top-full left-0 text-xs text-red-500 mt-[2px]">{{ Helper.translate(form.errors.password, true) }}</span>
+        </div>
+        <div class="relative">
+            <CInput type="password" placeholder="Confirm Password" v-model="form.password_confirmation" class="mb-6" />
+            <span class="absolute top-full left-0 text-xs text-red-500 mt-[2px]">{{ Helper.translate(form.errors.password_confirmation, true) }}</span>
+        </div>
+
         <label class="flex items-center gap-2 select-none">
             <input type="checkbox" v-model="form.is_agree" />
             <div>
@@ -117,9 +126,9 @@
                 </Link>.
             </div>
         </label>
-        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <!-- <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
             {{ Helper.translate('It will take up to 72 hours to review your application.') }}
-        </p>
+        </p> -->
 
         <button 
             v-if="form.is_agree"
@@ -128,11 +137,11 @@
             :class="!!form.processing && 'pointer-events-none opacity-70'"
         >
             <Preloader class="w-4 h-4" v-if="!!form.processing" />
-            {{ Helper.translate('Send') }}
+            {{ Helper.translate('Go') }}
         </button>
         
         <div v-else class="bg-[var(--btn-bg-color)] text-[var(--btn-text-color)] rounded-full px-5 md:py-2 py-1 shadow ml-auto block w-fit pointer-events-none opacity-60 mt-6">
-            {{ Helper.translate('Send') }}
+            {{ Helper.translate('Go') }}
         </div>
     </form>
 </template>
@@ -176,7 +185,6 @@ const form = useForm({
     video: '',
     link: '',
     password: '',
-    password_confirmation: '',
     password_confirmation: '',
     is_agree: false,
     role: 'talent'

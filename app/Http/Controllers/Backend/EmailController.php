@@ -23,11 +23,11 @@ class EmailController extends Controller
             if ($item->talent_earning) {
                 $item->fulfilled = $item->talent_earning->status == 1;
                 $item->fulfilled_at = $item->talent_earning->fulfilled_at;
-            }
-            if (Carbon::parse($item->expirationDate)->gt(now())) {
-                $item->duration_millisecond = Carbon::parse($item->expirationDate)->diffInMilliseconds(now());
-            } else {
-                $item->duration_millisecond = 0;
+                if (Carbon::parse($item->expirationDate)->gt(now())) {
+                    $item->duration_millisecond = Carbon::parse($item->expirationDate)->diffInMilliseconds(now());
+                } else {
+                    $item->duration_millisecond = 0;
+                }
             }
             return $item;
         });
@@ -47,11 +47,11 @@ class EmailController extends Controller
             if ($item->talent_earning) {
                 $item->fulfilled = $item->talent_earning->status == 1;
                 $item->fulfilled_at = $item->talent_earning->fulfilled_at;
-                if (Carbon::parse($item->expirationDate)->gt(now())) {
-                    $item->duration_millisecond = Carbon::parse($item->expirationDate)->diffInMilliseconds(now());
-                } else {
-                    $item->duration_millisecond = 0;
-                }
+            }
+            if (Carbon::parse($item->expirationDate)->gt(now())) {
+                $item->duration_millisecond = Carbon::parse($item->expirationDate)->diffInMilliseconds(now());
+            } else {
+                $item->duration_millisecond = 0;
             }
             return $item;
         });

@@ -34,26 +34,27 @@ Route::middleware(['auth', 'verified', 'user-role:talent'])->group(function(){
 
     Route::get('/talent/dashboard/account', [TalentController::class, 'account'])->name('talent.account');
     Route::put('/talent/account/update', [TalentController::class, 'accountUpdate'])->name('talent.account.update');
-    
-    
-    
+
+
+
     Route::get('/talent/dashboard/tips', [TalentEarningController::class, 'tips'])->name('talent.tips');
-    
+
     Route::get('/talent/dashboard/my-life', [TalentEarningController::class, 'myLife'])->name('talent.myLife');
     Route::post('/talent/dashboard/my-life/post', [PostController::class, 'store'])->name('talent.myLife.post');
     Route::post('/talent/dashboard/my-life/postDelete/{id}', [PostController::class, 'postDelete'])->name('talent.myLife.postDelete');
 
     Route::get('/talent/dashboard/wish-request', [TalentEarningController::class, 'wishRequest'])->name('talent.wish.request');
     Route::post('/talent/dashboard/save-wish-request', [TalentEarningController::class, 'saveWishAmount'])->name('talent.wish.saveAmount');
-    
+
     Route::get('/talent/dashboard/manager', [TalentManagerController::class, 'manager'])->name('talent.manager.index');
+    Route::post('/talent/dashboard/manager-save', [TalentManagerController::class, 'save'])->name('talent.manager.save');
 
     Route::post('/talent/dashboard/save-mylife-amount', [TalentEarningController::class, 'saveMylifeAmount'])->name('talent.mylife.saveAmount');
     Route::post('/talent/dashboard/save-tips-amount', [TalentEarningController::class, 'saveTipsAmount'])->name('talent.tips.saveAmount');
-    
+
     Route::get('/talent/dashboard/analytics', [TalentDashboardController::class, 'index'])->name('talent.analytics');
     Route::post('/talent/get-earnings', [TalentDashboardController::class, 'getEarnings'])->name('talent.getEarnings');
-    
+
     Route::get('/talent/dashboard/earnings', [PaymentRequestController::class, 'index'])->name('talent.payout');
     Route::post('/talent/dashboard/payout-request', [PaymentRequestController::class, 'payoutRequest'])->name('talent.payoutRequest');
     Route::post('/talent/dashboard/mobile-payout-request', [PaymentRequestController::class, 'mobilePayoutRequest'])->name('talent.mobilePayoutRequest');

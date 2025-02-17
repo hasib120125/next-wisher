@@ -5,19 +5,24 @@
             <h2 class="font-black text-md">{{ Helper.translate('Money Back Guarantee') }}</h2>
         </div>
         <p class="text-center text-sm">
-            {{ Helper.translate('If your request for a personalized video could not be completed or expires, we will refund your money within 3-5 working days.') }}
+            {{ Helper.translate('If your request for a personalized video could not be completed or expires, we will refund your money within 3-10 working days.') }}
         </p>
         <p class="text-center text-sm">
             {{ Helper.translate('Refunds can only be sent back to the original payment method used in a charge.') }}
         </p>
 
-        <img 
-            class="w-[140px] block mx-auto mt-2"
-            src="/paymentIcons.png" 
-        />
+        <div class="flex justify-center items-center gap-3 mt-3">
+            <img 
+                class="w-[140px] mt-2"
+                src="/paymentIcons.png" 
+            />
+
+            <MobileIcon />
+        </div>
     </div>
 </template>
 
 <script setup>
     import Helper from '@/Helper'
+    import MobileIcon from '@/Components/Global/Icons/MobileIcon.vue';
 </script>

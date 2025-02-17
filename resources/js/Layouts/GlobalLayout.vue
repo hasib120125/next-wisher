@@ -44,7 +44,10 @@
             </div>
         </div>
     </div>
-    <div @click.self="showPaymentSuccessPopup=false" v-if="showPaymentSuccessPopup" class="fixed bg-black/40 backdrop-blur w-full h-full top-0 left-0 z-[99990] flex items-center justify-center p-10">
+    <div @click.self="() => {
+            showPaymentSuccessPopup=false
+            is_pawapay = false
+        }" v-if="showPaymentSuccessPopup" class="fixed bg-black/40 backdrop-blur w-full h-full top-0 left-0 z-[99990] flex items-center justify-center p-10">
         <div class="bg-white p-5 rounded w-full max-w-[500px] relative">
             <button @click="showPaymentSuccessPopup=false" class="w-[30px] h-[30px] rounded-full bg-red-100 border border-red-400 text-red-600 flex items-center justify-center absolute -top-4 -right-4">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -60,7 +63,10 @@
                 {{ Helper.translate('Payment successful') }}
             </div>
             <div class="mt-4">
-                {{ Helper.translate(`Your order has been placed. We'll send you an email with your order details.`) }}
+                {{ Helper.translate(`Your order has been placed.`) }} 
+                <template v-if="!is_pawapay">
+                    {{ Helper.translate(`We'll send you an email with your order details.`) }}
+                </template>
             </div>
         </div>
     </div>
@@ -78,6 +84,7 @@ import CheckIcon from '@/Icons/CheckIcon.vue';
 const showPaymentFailedPopup = ref(false)
 
 const showPaymentSuccessPopup = ref(false)
+const is_pawapay = ref(false)
 
 const showTalentRegisteredPopup = ref(false)
 
@@ -111,6 +118,10 @@ watchEffect(() => {
         }
         if(props.flash.payment_status == 'success'){
             showPaymentSuccessPopup.value = true
+        }
+        if(get(props, 'is_pawapay') == 'success'){
+            showPaymentSuccessPopup.value = true
+            is_pawapay.value = true
         }
         if(props.flash.message){
             toast.success(Helper.translate(props.flash.message), {

@@ -46,16 +46,17 @@ onMounted(()=>{
     getEarnings()
 })
 
-const selectedOption = ref(0);
+const selectedOption = ref('all');
 
 const handleDateChange = () => {
     if(selectedOption.value == 'all'){
         filterData.value.start_date = null
         filterData.value.end_date = null
         return
+    } else {
+        filterData.value.end_date = moment().format('YYYY-MM-DD')
+        filterData.value.start_date = moment().subtract(selectedOption.value, 'days').format('YYYY-MM-DD')
     }
-    filterData.value.end_date = moment().format('YYYY-MM-DD')
-    filterData.value.start_date = moment().subtract(selectedOption.value, 'days').format('YYYY-MM-DD')
 }
 
 const filterOptions = [

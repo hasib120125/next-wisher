@@ -27,7 +27,7 @@
                 {{ Helper.translate('You will be charged') }} {{ currency }} {{ total + charge }} <br> {{ total }} + {{ charge }} {{ Helper.translate('conversion Fee') }}
             </div>
             <div class="flex justify-center mt-5">
-                <button @click="$emit('submitToPay')" class="bg-blue-500 hover:opacity-80 text-white rounded py-2 px-5 shadow-lg active:scale-95">
+                <button @click="$emit('submitToPay', total + charge)" :disabled="processing" class="bg-blue-500 disabled:opacity-50 hover:opacity-80 text-white rounded py-2 px-5 shadow-lg active:scale-95">
                     {{ Helper.translate('PAY NOW') }}: {{ currency }} {{ total + charge }}
                 </button>
             </div>
@@ -48,6 +48,10 @@ const props = defineProps({
     amount: {
         type: Number,
         default: 0,
+    },
+    processing: {
+        type: Boolean,
+        default: false,
     },
     currency: String,
 })

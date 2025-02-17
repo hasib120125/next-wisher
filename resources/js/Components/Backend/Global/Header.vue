@@ -1,50 +1,16 @@
 <template>
-    <header class="bg-[var(--header-bg-color)] text-white px-4 py-1.5 max-lg:py-2 sticky top-0 z-50">
-        <!-- <div class="navWrapper max-w-[1200px] mx-auto text-white items-center relative"> -->
-        <div class="flex justify-between max-w-[1200px] mx-auto text-white items-center relative">
-            <!-- <Navigation /> -->
-
-            <!-- <div class="grid text-center gap-2"> -->
-            <!-- <div class="flex md:pr-[50px] text-center gap-2"> -->
-            <div></div>
-            <div class="flex text-center gap-2">
-                <Logo :light="true"/>
+    <header class="bg-white text-black border-b border-slate-300 px-4 py-1.5 max-lg:py-2 sticky top-0 z-50">
+        <div class="flex justify-between max-w-[1200px] mx-auto items-center relative">
+            <div class="flex">
+                <Navigation />
+                <Logo :light="false"/>
             </div>
+
             <div class="flex md:gap-4 gap-2 items-center justify-end">
+                <Notification />
                 <Profile />
             </div>
-            <!-- 
-
-            <div v-if="showSearchBox" ref="target" class="searchbox absolute top-0 left-0 right-0 bg-white text-black h-full flex items-center">
-                <label class="container mx-auto block relative">
-                    <input
-                        v-model="searchQuery"
-                        @input="handleSearch"
-                        v-autoFocus
-                        type="search" :placeholder="`${Helper.translate('Search')}...`" 
-                        class="w-full block border-0" 
-                    />
-                    <button @click="showSearchBox=false" class="absolute right-2 top-1/2 transform -translate-y-1/2">
-                        <CloseIcon class="w-4 h-4" />
-                    </button>
-                </label>
-                <div v-if="size(searchResult)" class="w-full left-0 absolute top-[calc(100%+15px)] z-20">
-                    <div class="bg-white divide-y divide-slate-300 shadow-xl overflow-hidden">
-                        <Link 
-                            v-for="(talent, index) in searchResult"
-                            :key="index"
-                            :href="route('item.details', {
-                                id: talent.id,
-                                username: `${String(talent.username).replaceAll(' ', '-')}`
-                            })"
-                            @click="cleanSearchQuery"
-                            class="block py-1 px-2 hover:text-slate-800 hover:bg-slate-100 text-slate-700 capitalize"
-                        >
-                            {{ getName(talent) }}
-                        </Link>
-                    </div>
-                </div>
-            </div> -->
+            
         </div>
     </header>
 </template>

@@ -12,6 +12,9 @@ import 'vue3-toastify/dist/index.css'
 
 import CategoryHelper from '@/CategoryHelper'
 
+window.VUE_DEVTOOLS_CONFIG = {
+    openInEditorHost: 'http://localhost:5173/'
+}
 
 axios.defaults.baseURL = `${document.location.origin}/api/`;
 const appName = window.document.getElementsByTagName('title')[0]?.innerText

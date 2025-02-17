@@ -4,7 +4,7 @@
             <Header v-if="header" />
             <!-- <div :class="route().current('payment.tips.amount') ? 'min-h-[calc(100vh-108px)]' : 'min-h-[calc(100vh-164px)]'"> -->
                 <!-- {{ route().current('payment.tips.amount') ? 'some' : 'more' }} -->
-            <div class="min-h-[calc(100%-80px)]">
+            <div class="min-h-[calc(100%-var(--footerHeight))]" :style="`--footerHeight:${footer_height}`">
                 <slot></slot>
             </div>
             <Footer v-if="footer" class="" />
@@ -17,7 +17,7 @@ import Header from '@/Components/Backend/Global/Header.vue'
 import Footer from '@/Components/Backend/Global/Footer.vue'
 import GlobalLayout from '@/Layouts/GlobalLayout.vue'
 import useVisitors from "@/Pages/Backend/AdminDashboard/useVisitors"
-import { onMounted, onUnmounted } from "vue"
+import { onMounted, onUnmounted, onBeforeMount } from "vue"
 import Helper from '@/Helper'
 
 defineProps({
@@ -28,6 +28,10 @@ defineProps({
     footer: {
         type: Boolean,
         default: true
+    },
+    footer_height: {
+        type: String,
+        default: '80px'
     }
 })
 
@@ -42,6 +46,13 @@ const payload = {
 
 let timeoutId = null
 let intervalId = null
+
+onBeforeMount(() => {
+    if(!localStorage.language) {
+        localStorage.language = "french"
+    }
+})
+
 onMounted(() => {
     timeoutId = setTimeout(() =>{
         makeVisitors(payload)
@@ -49,6 +60,7 @@ onMounted(() => {
             makeVisitors(payload)
         }, hitDelay)
     }, hitDelay)
+    makeVisitors(payload)
 })
 
 onUnmounted(() => {

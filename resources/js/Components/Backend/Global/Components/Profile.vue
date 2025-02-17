@@ -1,7 +1,7 @@
 <template>
     <div v-if="user" class="relative group">
         <span 
-            class="font-black ml-1 w-8 h-8 md:text-[11px] text-[10px] grid content-center justify-center rounded-full p-2 cursor-pointer uppercase"
+            class="font-black ml-1 w-8 h-8 md:text-[11px] text-white text-[10px] grid content-center justify-center rounded-full p-2 cursor-pointer uppercase"
             :class="
                 user.role && user.role == 'talent' ? 'bg-blue-500' : 
                 user.role && user.role == 'admin' ? 'bg-green-500' : 
@@ -10,7 +10,7 @@
         >
             {{ getTwoLatterOfName(user.username??user.name) }}
         </span>
-        <div class="opacity-0 invisible group-hover:visible group-hover:opacity-100 dropdown grid absolute right-[-4px] top-[38px] bg-white text-[var(--text-color)] rounded shadow-lg z-10">
+        <div class="opacity-0 invisible group-hover:visible group-hover:opacity-100 dropdown grid absolute right-[-4px] top-[38px] text-[var(--text-color)] rounded shadow-lg z-10">
             <span class="w-2 h-2 bg-white absolute right-4 rotate-45 bottom-full transform translate-y-1/2"></span>
             <Link
                 class="px-4 py-2 border-b border-b-[--text-color] border-opacity-20 hover:bg-gray-100 transition-all rounded-t" 
@@ -32,7 +32,7 @@
             </Link>
         </div>
     </div>
-    <button v-else @click="showAuthModal = true" class="whitespace-nowrap font-semibold max-lg:text-sm lg:px-6 px-2 py-1 text-white text-opacity-60 hover:text-opacity-100 rounded-full">
+    <button v-else @click="showAuthModal = true" class="whitespace-nowrap font-semibold max-lg:text-sm lg:px-6 px-2 py-1 text-opacity-60 hover:text-opacity-100 rounded-full">
         {{ Helper.translate('Sign up') }}
     </button>
 

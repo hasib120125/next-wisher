@@ -8,7 +8,7 @@
                 <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"></path>
             </svg>
             <div class="text-xl">
-                {{ Helper.translate('Your request to become a talent has been submitted. We will be in touch within 72 hours. Thank you!') }}
+                {{ Helper.translate('Check your email and click on the verification button to verify your email.') }}
                 <div class="text-center pt-3">
                     {{ Helper.translate('Do not forget to verify your spam folder.') }}
                 </div>

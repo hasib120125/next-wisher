@@ -42,13 +42,21 @@
                 </span>
             </div>
         </div>
-        <div v-if="$page.props.wish" class="px-4 py-2 select-none rounded-2xl text-xl bg-red-600 text-white font-bold text-center">
+        <div 
+            @click="redirectLogin($page.props.auth)" 
+            v-if="$page.props.wish" 
+            class="px-4 py-2 select-none rounded-2xl text-xl bg-red-600 text-white font-bold text-center cursor-pointer"
+        >
             {{ Helper.translate('Book') }}
         </div>
         <!-- <div v-if="$page.props.mylife" class="px-4 py-2 rounded text-xl bg-black text-white font-bold text-center">
             {{ Helper.translate('My Life') }}
         </div> -->
-        <div v-if="$page.props.wish && $page.props.tips" class="px-4 py-2 rounded-2xl text-xl bg-sky-500 text-white font-bold text-center">
+        <div 
+            @click="redirectLogin($page.props.auth)" 
+            v-if="$page.props.wish && $page.props.tips" 
+            class="px-4 py-2 rounded-2xl text-xl bg-sky-500 text-white font-bold text-center cursor-pointer"
+        >
             {{ Helper.translate('Send tip') }}
         </div>
     </div>
@@ -58,7 +66,7 @@
     import Helper from '@/Helper'
     import { get } from 'lodash'
     import { Link } from '@inertiajs/inertia-vue3'
-
+import { Inertia } from '@inertiajs/inertia';
 
     const props = defineProps({
         talent: Object,
@@ -66,6 +74,14 @@
 
     const getWishAmount = (wish) => {
         return Number(get(wish,'amount')) || 0
+    }
+    const redirectLogin = (auth) => {
+        if(!get(auth, 'user')) {
+            Helper.unAuthAlert()
+        } else if(get(auth, 'user.role') == 'talent') {
+            Helper.asTalentClickAlert()
+        }
+        // return Inertia.replace(route('home', {modal: 'login'}))
     }
     
 </script>

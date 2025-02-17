@@ -5,7 +5,9 @@
                 <div class="cardWrapper flex flex-col-reverse lg:grid gap-6 md:items-stretch items-start">
                     <div class="border w-full p-6 rounded-lg grid gap-4">
                         <div>
-                            <h3 class="mb-5 font-semibold w-full max-w-[300px] mx-auto">Select payment method</h3>
+                            <h3 class="mb-5 font-semibold w-full max-w-[300px] mx-auto">
+                                {{ Helper.translate('Select payment method') }}
+                            </h3>
                             <div class="grid gap-5">
                                 <label class="flex gap-3 w-full max-w-[300px] mx-auto">
                                     <input type="radio" v-model="payment_method" value="card" name="pay_method" />
@@ -68,15 +70,16 @@
                                     {{ Helper.translate('Mobile payment') }}
                                 </label>
                                 <div v-show="payment_method == 'mobile'" class="py-5 px-4 rounded-xl border w-full max-w-[400px] border-slate-400 mx-auto">
+                                    
                                     <div class="flex justify-center">
                                         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                                             <label 
                                                 v-for="(country, index) in countries"
-                                                class="w-14 h-14 relative"
+                                                class="w-14 h-14 relative" :key="'country'+index"
                                             >
                                                 <input type="radio" @input="selected_sim=null" v-model="current_country" :value="country.name" name="country_name" class="hidden peer" />
                                                 <div 
-                                                    class="w-14 h-14 rounded-full"
+                                                    class="w-14 h-14 rounded-full overflow-hidden"
                                                     :class="current_country==country.name ? 'ring-4 ring-blue-500/50' : ''"
                                                 >
                                                     <img :src="country.flag" alt="" class="block w-full h-full object-cover" />
@@ -87,12 +90,13 @@
 
                                     <div class="mt-5">
                                         <h2 class="mb-3 text-xl font-bold capitalize">{{ Helper.translate(String(current_country).replace('_', ' ')) }}</h2>
-                                        <p>{{ Helper.translate('Select Network') }}</p>
+                                        <!-- <p>{{ Helper.translate('Select Network') }}</p>
 
                                         <div class="py-3 px-4 mt-4 border border-slate-400 rounded-xl flex justify-center gap-5">
                                             <NetworkItem
                                                 v-for="(sim, index) in selected_country.sim"
                                                 :sim="sim"
+                                                :selected_sim="selected_sim"
                                                 :selected_country="selected_country"
                                                 @update="val => selected_sim=val"
                                                 :key="index"
@@ -122,7 +126,17 @@
                                                     {{ Helper.translate('Next') }}
                                                 </button>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="flex justify-center mt-5">
+                                        <button 
+                                            @click="handleNext"
+                                            class="py-1.5 px-10 flex items-center gap-2 rounded bg-orange-600 hover:bg-opacity-80 text-white disabled:opacity-70 disabled:cursor-not-allowed"
+                                        >
+                                            <Preloader v-if="form.processing" class="w-5 h-5" />
+                                            {{ Helper.translate('Next') }}
+                                        </button>
                                     </div>
                                     
                                 </div>
@@ -162,6 +176,11 @@
                         </div>
                         <div class="font-bold text-gray-400 grid mt-3 lg:mt-8 text-sm border-t pt-0 lg:pt-4">
                             <span class="text-black text-2xl mt-2">
+                                <!-- <template v-if="payment_method == 'mobile'">
+                                    {{ getConvertedCurrency(getPrice(Number(earning.amount), type), get(getPrefix(selected_country.sim, selected_sim), 'rate')) }}
+                                </template>
+                                <template v-else>
+                                </template> -->
                                 {{ Helper.priceFormate(getPrice(Number(earning.amount), type)) }}
                             </span>
                         </div>
@@ -176,7 +195,8 @@
             :rate="get(getPrefix(selected_country.sim, selected_sim), 'rate')"
             :currency="get(getPrefix(selected_country.sim, selected_sim), 'currency')"
             :amount="getPrice(Number(earning.amount), type)"
-            @submitToPay="handleMobilePay"
+            @submitToPay="charge => handleMobilePay(charge)"
+            :processing="form.processing"
         />
         
     </Master>
@@ -233,15 +253,25 @@ const form = useForm({
 const showConfirmPopup = ref(false)
 
 const payment_method = ref(null)
-const current_country = ref('cameroon')
-const selected_sim = ref('')
+const current_country = ref('ivory_coast')
+const selected_sim = ref('MTN')
 const phone_number = ref('')
 const prefix = ref('')
 // countries
 const selected_country = computed(() => {
     phone_number.value=''
-    return countries.find(item => item.name == current_country.value)
+    let country = countries.find(item => item.name == current_country.value)
+    let mno = get(country, 'sim[0].mno')
+    if(mno) {
+        selected_sim.value = mno
+    }
+    return country
 })
+
+const getConvertedCurrency = (amount, rate)  => {
+    let _total = (amount * rate) || 0
+    return parseFloat(Number(0.035 * _total).toFixed(4))
+}
 
 /**
 Cameroon -- 
@@ -281,7 +311,7 @@ const validatePhoneNumber = (num) => {
 
 const getPrefix = (sim_list, sim) => {
     let found = sim_list.find(item => item.mno == sim)
-    prefix.value = found.prefix
+    prefix.value = found?.prefix
     return found
 }
 
@@ -289,13 +319,13 @@ const handleNext = () => {
     const validPhone = validatePhoneNumber(phone_number.value)
     let sim_info = getCorrespondent(current_country.value, selected_sim.value)
     
-    if (!current_country.value || !selected_sim.value || !validPhone.valid || !sim_info) {
-        return;
-    }
+    // if (!current_country.value || !selected_sim.value || !validPhone.valid || !sim_info) {
+    //     return;
+    // }
     showConfirmPopup.value = true;
 }
 
-const handleMobilePay = () => {
+const handleMobilePay = (charge) => {
     const validPhone = validatePhoneNumber(phone_number.value)
     let sim_info = getCorrespondent(current_country.value, selected_sim.value)
     form.mobile_payload.sim = selected_sim.value
@@ -305,7 +335,9 @@ const handleMobilePay = () => {
     form.mobile_payload.correspondent = sim_info.correspondent
     form.mobile_payload.currency = sim_info.currency
     form.mobile_payload.rate = sim_info.rate
+    form.mobile_payload.charge = charge
     form.mobile_payload.mno = sim_info.mno
+    form.mobile_payload.decimal = sim_info.decimal
     // console.log(form);
     // return
     form.post(route('payment.mobile_pay_test', {
@@ -388,7 +420,7 @@ onMounted(async ()=> {
                     }
                     if (result.token) {
                         form.token = result.token;
-                        form.post(route('payment.mobile_pay', {
+                        form.post(route('payment.createPayment', {
                             id: props.talent.id,
                             type: props.type
                         }))

@@ -2,7 +2,12 @@
     <div>
         <!-- <h2 class="text-lg font-semibold mt-6 mb-4 text-red-500 text-center">{{ Helper.translate('Minimum Payout') }} {{ Helper.priceFormate(50) }}</h2> -->
         <div class="relative mb-6">
-            <CInput type="number" v-model="form.amount" placeholder="Enter Payout Amount" />
+            <CInput 
+                type="number" 
+                v-model="form.amount"
+                step="0.01"
+                placeholder="Enter Payout Amount" 
+            />
             <span class="absolute top-full left-0 text-xs text-red-500">{{ Helper.translate(form.errors.amount, true) }}</span>
         </div>
         <div class="relative mb-6">

@@ -20,11 +20,11 @@
     </div> -->
     <div class="container mx-auto py-5">
         <div class="grid grid-cols-3 gap-4">
-            <div v-for="calender in calender_posted" class="relative transition-all text-white border hover:shadow-xl">
+            <div v-for="(calender, index) in calender_posted" class="relative transition-all text-white border hover:shadow-xl" :key="'calender'+index">
                 <a :href="route('calendar.download', calender.id)">
                     <DownloadIcon class="absolute right-4 top-4 w-6 h-6 cursor-pointer drop-shadow-lg" />
                 </a>
-                <img :src="calender.settings[0].path" class="customRatio bg-gray-200" src="poster" alt="" >
+                <img :src="calender.settings[0].path" class="customRatio bg-gray-200" alt="" >
                 <button class="absolute left-1/2 bottom-10 transform -translate-x-1/2 cursor-pointer p-2 rounded-full transition-all bg-red-400 hover:shadow-lg hover:bg-red-500">
                     <CloseIcon class="w-4 h-4" />
                 </button>

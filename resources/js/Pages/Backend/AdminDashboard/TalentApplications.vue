@@ -1,6 +1,9 @@
 <template>
     <Head :title="Helper.translate('Talent Applications')" />
-    <DashboardLayout :header="false" :footer="false" :title="activeComponent == 'Applications' ? 'Talent Applications' : 'Talent\'s Declined Applications'">
+    <DashboardLayout 
+        :header="false" 
+        :footer="false" 
+        :title="activeComponent == 'Applications' ? 'Accounts suspended' : 'Suspended Talent\'s'">
         <template v-slot:leftSidebar>
             <LeftSide />
         </template>

@@ -14,7 +14,7 @@
             </div> 
         </div>
 
-        <div class="flex flex-col mt-4">
+        <div class="grid mt-4">
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="border-b whitespace-nowrap">
@@ -41,6 +41,7 @@
                                 {{ Helper.translate('Verification') }}
                             </th>
                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                {{ Helper.translate('Restore') }} /
                                 {{ Helper.translate('Delete') }}
                             </th>
                         </tr>
@@ -70,7 +71,10 @@
                                     {{ Helper.translate('Declined') }}
                                 </span>
                             </td>
-                            <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap flex gap-0">
+                            <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap flex gap-4">
+                                <button v-if="item?.note_email" @click="handleRestore(item.id)" class="bg-green-400 px-2 py-2 rounded-full text-white text-sm font-bold ml-auto block">
+                                    <RestoreIcon class="w-4 h-4" />
+                                </button>
                                 <button @click="handleDelete(item.id)" class="bg-red-400 px-2 py-2 rounded-full text-white text-sm font-bold ml-auto block">
                                     <CloseIcon class="w-4 h-4" />
                                 </button>
@@ -91,6 +95,7 @@ import AngleLeftIcon from '@/Icons/AngleLeftIcon.vue'
 import AngleRightIcon from '@/Icons/AngleRightIcon.vue'
 import useTable from '@/Components/Backend/Global/Table/useTable.js'
 import useTalentApplications from '@/Pages/Backend/AdminDashboard/useTalentApplications.js'
+import RestoreIcon from '@/Icons/RestoreIcon.vue'
 import Helper from '@/Helper'
 import { get } from 'lodash'
 import { computed } from 'vue'
@@ -109,6 +114,11 @@ const declinedTelent = computed(() => {
 const handleDelete = (id) => {
     Helper.confirm(Helper.translate('Are you sure?'), () => {
         Inertia.delete(route('admin.delete_talent', id))
+    })
+}
+const handleRestore = (id) => {
+    Helper.confirm(Helper.translate('Are you sure?'), () => {
+        Inertia.delete(route('admin.restore_declined_talent', id))
     })
 }
 

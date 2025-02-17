@@ -50,6 +50,7 @@ import { onMounted, ref } from 'vue'
 const props = defineProps({
     src: String,
     poster: String,
+    download: Boolean,
 })
 
 const isLoading = ref(true)

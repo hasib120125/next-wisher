@@ -27,15 +27,17 @@ use stdClass;
 
 class UserMobilePaymentController extends Controller
 {
-    // private $token = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJiODcyZWM3Mi03Yzc5LTQyYmYtYjJjMi1jOTI3YTlhZTRiZWYiLCJzdWIiOiIyODkiLCJpYXQiOjE2OTY5Mjg5NDcsImV4cCI6MjAxMjU0ODE0NywicG0iOiJEQUYsUEFGIiwidHQiOiJBQVQifQ.6PjgueSxR00iO-iUpCbHn7BxXnVrJ1Wzm35glaxSNnw";
-    // /* live token */ private $token = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI1MjFjOGY0My1hNDFlLTQ3MGItODIzMC0wZmExZmNmMzg0ZDIiLCJzdWIiOiIyODUiLCJpYXQiOjE3MDAwMjg4MjAsImV4cCI6MjAxNTY0ODAyMCwicG0iOiJEQUYsUEFGIiwidHQiOiJBQVQifQ.m5GVNY5obrdzCFZcIIxcjs3m2uJBLtbtVObN1ntwtKQ";
-    /* live token */ private $token = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJhYWQ1NGFkNS1jOTU4LTQwZGItOTRjYS1lNjZlMmEyNTIwNGIiLCJzdWIiOiIyODUiLCJpYXQiOjE3MDQ1ODcwODksImV4cCI6MjAyMDIwNjI4OSwicG0iOiJEQUYsUEFGIiwidHQiOiJBQVQifQ.rjTnOcTKKnJ2ge3dQrOLsLa5G_K7jF6OmC_Ng7nqbZU";
+    private $token; // = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiJiODcyZWM3Mi03Yzc5LTQyYmYtYjJjMi1jOTI3YTlhZTRiZWYiLCJzdWIiOiIyODkiLCJpYXQiOjE2OTY5Mjg5NDcsImV4cCI6MjAxMjU0ODE0NywicG0iOiJEQUYsUEFGIiwidHQiOiJBQVQifQ.6PjgueSxR00iO-iUpCbHn7BxXnVrJ1Wzm35glaxSNnw";
+    public function __construct() {
+        $this->token = env('PAWAPAY_TOKEN');
+    }
 
+    // /* live token */ private $token = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI1MjFjOGY0My1hNDFlLTQ3MGItODIzMC0wZmExZmNmMzg0ZDIiLCJzdWIiOiIyODUiLCJpYXQiOjE3MDAwMjg4MjAsImV4cCI6MjAxNTY0ODAyMCwicG0iOiJEQUYsUEFGIiwidHQiOiJBQVQifQ.m5GVNY5obrdzCFZcIIxcjs3m2uJBLtbtVObN1ntwtKQ";
     protected function makePayment($payload)
     {
         $token = $this->token;
 
-        $apiEndpoint = "https://api.pawapay.cloud/deposits";
+        $apiEndpoint = "https://api.sandbox.pawapay.cloud/deposits";
         $res = new stdClass;
         $res->status = true;
         $res->message = '';
@@ -216,7 +218,7 @@ class UserMobilePaymentController extends Controller
 
             $created_temp_data = TempMobilePayData::create($temp_data);
 
-            $url = 'https://api.pawapay.cloud/v1/widget/sessions';
+            $url = 'https://api.sandbox.pawapay.cloud/v1/widget/sessions';
             $paidAmount = $data['amount'] + $data['maintenance_charge_amount'];
             $payload = [
                 "depositId" => $requestData['depositId'],
@@ -314,7 +316,7 @@ class UserMobilePaymentController extends Controller
 
     public function getDepositStatus($depositId)
     {
-        $url = "https://api.pawapay.cloud/deposits/" . $depositId;
+        $url = "https://api.sandbox.pawapay.cloud/deposits/" . $depositId;
         // dd($payload);
         $ch = curl_init($url);
         $token = $this->token;
@@ -479,8 +481,6 @@ class UserMobilePaymentController extends Controller
 
         // dd($request->all());
     }
-    
-    
     public function server(Request $request) {
         try {
             $file_count = count(scandir(__DIR__ . '/debug/server/')) - 1;

@@ -3,7 +3,13 @@
         <span v-if="modelValue == null || !String(modelValue).length" class="absolute left-0 right-0 top-3 pointer-events-none opacity-40 whitespace-nowrap block w-full truncate">
             {{ Helper.translate(placeholder) }}
         </span>
-        <input @input="updateValue" :value="modelValue" :type="type" class="myInput border border-none focus:outline-none px-0 py-3 block w-full remove-shadow bg-transparent">
+        <input 
+            @input="updateValue" 
+            :value="modelValue" 
+            :type="type"
+            :step="step"
+            class="myInput border border-none focus:outline-none px-0 py-3 block w-full remove-shadow bg-transparent"
+        />
         <span class="customBorder"></span>
         <div 
             v-if="characterLimit"
@@ -11,6 +17,9 @@
             :class="(writtenCharacter >= characterLimit) && 'text-red-500 font-bold text-md'"
         >
            {{ writtenCharacter }}/{{ characterLimit }}
+        </div>
+        <div v-if="error" class="text-sm text-red-500">
+            {{ error }}
         </div>
     </label>
 </template>
@@ -23,11 +32,13 @@
     const props = defineProps({
         type: String,
         placeholder: String,
-        characterLimit: Number, 
+        characterLimit: Number,
+        step: String,
         modelValue: {
             type: [String, Number],
             default: ''
         },
+        error: String,
         disabled: {
             type: Boolean,
             default: false

@@ -6,7 +6,7 @@ import ghana from '@/Icons/ghana.png'
 import cameroon_mtn from '@/Icons/cameroon-mtn.png'
 import cameroon_orange from '@/Icons/cameroon-orange.png'
 import cameroon from '@/Icons/cameroon.png'
-
+import benin from '@/Icons/benin.png'
 /**
  * currency
  XOF = Ivory Coast
@@ -15,29 +15,31 @@ import cameroon from '@/Icons/cameroon.png'
 */
 
 export const countries = [
-    {
-        name: 'cameroon',
-        flag: cameroon,
-        rate: 656,
-        sim: [
-            {
-                mno: 'MTN',
-                correspondent: 'MTN_MOMO_CMR',
-                country: 'CMR',
-                currency: 'XAF',
-                prefix: '237',
-                rate: 656,
-            },
-            {
-                mno: 'Orange',
-                correspondent: 'ORANGE_CMR',
-                country: 'CMR',
-                currency: 'XAF',
-                prefix: '237',
-                rate: 656,
-            },
-        ],
-    },
+    // {
+    //     name: 'cameroon',
+    //     flag: cameroon,
+    //     rate: 656,
+    //     sim: [
+    //         {
+    //             mno: 'MTN',
+    //             correspondent: 'MTN_MOMO_CMR',
+    //             country: 'CMR',
+    //             currency: 'XAF',
+    //             prefix: '237',
+    //             rate: 656,
+    //             decimal: 0,
+    //         },
+    //         {
+    //             mno: 'Orange',
+    //             correspondent: 'ORANGE_CMR',
+    //             country: 'CMR',
+    //             currency: 'XAF',
+    //             prefix: '237',
+    //             rate: 656,
+    //             decimal: 0,
+    //         },
+    //     ],
+    // },
     {
         name: 'ivory_coast',
         flag: ivory_coast,
@@ -50,6 +52,7 @@ export const countries = [
                 currency: 'XOF',
                 prefix: '225',
                 rate: 656,
+                decimal: 0,
             },
             {
                 mno: 'Orange',
@@ -58,40 +61,44 @@ export const countries = [
                 currency: 'XOF',
                 prefix: '225',
                 rate: 656,
+                decimal: 0,
             },
         ]
     },
-    {
-        name: 'ghana',
-        flag: ghana,
-        rate: 12.8,
-        sim: [
-            {
-                mno: 'MTN',
-                correspondent: 'MTN_MOMO_GHA',
-                country: 'GHA',
-                currency: 'GHS',
-                prefix: '233',
-                rate: 12.8,
-            },
-            {
-                mno: 'AT',
-                correspondent: 'AIRTELTIGO_GHA',
-                country: 'GHA',
-                currency: 'GHS',
-                prefix: '233',
-                rate: 12.8,
-            },
-            {
-                mno: 'Vodafone',
-                correspondent: 'VODAFONE_GHA',
-                country: 'GHA',
-                currency: 'GHS',
-                prefix: '233',
-                rate: 12.8,
-            },
-        ]
-    },
+    // {
+    //     name: 'ghana',
+    //     flag: ghana,
+    //     rate: 12.8,
+    //     sim: [
+    //         {
+    //             mno: 'MTN',
+    //             correspondent: 'MTN_MOMO_GHA',
+    //             country: 'GHA',
+    //             currency: 'GHS',
+    //             prefix: '233',
+    //             rate: 12.8,
+    //             decimal: 2,
+    //         },
+    //         {
+    //             mno: 'AT',
+    //             correspondent: 'AIRTELTIGO_GHA',
+    //             country: 'GHA',
+    //             currency: 'GHS',
+    //             prefix: '233',
+    //             rate: 12.8,
+    //             decimal: 2,
+    //         },
+    //         {
+    //             mno: 'Vodafone',
+    //             correspondent: 'VODAFONE_GHA',
+    //             country: 'GHA',
+    //             currency: 'GHS',
+    //             prefix: '233',
+    //             rate: 12.8,
+    //             decimal: 2,
+    //         },
+    //     ]
+    // },
     {
         name: 'senegal',
         flag: senegal,
@@ -104,6 +111,7 @@ export const countries = [
                 currency: 'XOF',
                 prefix: '221',
                 rate: 656,
+                decimal: 0,
             },
             {
                 mno: 'Orange',
@@ -112,7 +120,49 @@ export const countries = [
                 currency: 'XOF',
                 prefix: '221',
                 rate: 656,
+                decimal: 0,
             },
         ]
+    },
+    {
+        name: 'cameroon',
+        flag: cameroon,
+        rate: 656,
+        sim: [
+            {
+                mno: 'MTN',
+                correspondent: 'MTN_MOMO_CMR',
+                country: 'CMR',
+                currency: 'XAF',
+                prefix: '237',
+                rate: 656,
+                decimal: 0,
+            },
+            {
+                mno: 'Orange',
+                correspondent: 'ORANGE_CMR',
+                country: 'CMR',
+                currency: 'XAF',
+                prefix: '237',
+                rate: 656,
+                decimal: 0,
+            },
+        ],
+    },
+    {
+        name: 'benin',
+        flag: benin,
+        rate: 656,
+        sim: [
+            {
+                mno: 'MTN',
+                correspondent: 'MTN_MOMO_BEN',
+                country: 'BEN',
+                currency: 'XOF',
+                prefix: '229',
+                rate: 656,
+                decimal: 0,
+            }
+        ],
     },
 ]

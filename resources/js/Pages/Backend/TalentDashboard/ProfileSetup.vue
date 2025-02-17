@@ -138,8 +138,8 @@ const handleSelectVideo = (file) => {
     if (!file) {
         return
     }
-    if (file.size > 15 * Helper.MBSIZE) {
-        toast.error(Helper.translate('Maximum 15MB'))
+    if (file.size > 50 * Helper.MBSIZE) {
+        toast.error(Helper.translate('Maximum 50MB'))
         return
     }
     form.video_file = file
@@ -211,8 +211,8 @@ const handleSave = () => {
 }
 
 const handleProfile = (file) => {
-    if (file.size > 1 * Helper.MBSIZE) {
-        toast.error(Helper.translate('Maximum 1MB'))
+    if (file.size > 4 * Helper.MBSIZE) {
+        toast.error(Helper.translate('Maximum 4MB'))
         return
     }
     profileForm.image = file; 

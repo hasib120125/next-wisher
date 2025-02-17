@@ -9,7 +9,7 @@
                 <TabChanger :activeItems="talents.length" />
             </div>
             <button @click="activeComponent = 'Declined'" class="px-4 py-1 rounded bg-red-400 text-white font-bold whitespace-nowrap">
-                {{ Helper.translate('Application declined') }}
+                {{ Helper.translate('Accounts suspended') }}
             </button>
         </div>
 
@@ -43,7 +43,7 @@
                                 {{ Helper.translate('Verification') }}
                             </th>
                             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                {{ Helper.translate('Approve/Decline') }}
+                                {{ Helper.translate('Approve/Suspend') }}
                             </th>
                         </tr>
                     </thead>
@@ -72,7 +72,7 @@
                                 {{ get(item, 'category.name') }}
                             </td>
                             <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
-                                <button v-if="!item.status" @click="() => {
+                                <button v-if="!item.approved_at" @click="() => {
                                     showModal = true;
                                     selectedTalent = item.id;
                                     videoPath = item.verification_video
@@ -93,7 +93,7 @@
                                     class="bg-green-500 px-2 py-2 rounded-full text-white text-sm font-bold ml-auto block">
                                     <CheckIcon class="w-4 h-4" />
                                 </button>
-                                <button :disabled="loading" v-if="!item.status" @click="() => {
+                                <button :disabled="loading" v-if="!item.approved_at && item.status != 2" @click="() => {
                                     selectedTalent = item.id;
                                     handleAction(false);
                                 }" class="bg-red-400 px-2 py-2 rounded-full text-white text-sm font-bold ml-auto block">

@@ -9,6 +9,9 @@ export default defineConfig({
             refresh: true,
         }),
         vue({
+            script: {
+                defineModel: true,
+            },
             template: {
                 transformAssetUrls: {
                     base: null,

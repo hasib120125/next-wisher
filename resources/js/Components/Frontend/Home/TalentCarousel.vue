@@ -1,15 +1,27 @@
 <template>
     <div class="relative max-w-[1200px] sm:px-10 px-5 w-full mx-auto">
         <div v-if="title" class="font-semibold text-xl mb-3 mt-4">{{ Helper.translate(title) }}</div>
-        <div class="flex overflow-x-auto md:grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-4">
-            <Home2TalentItem 
-                v-for="index in 5"
-                :key="index"
-                @onClick="$emit('onClick', (indexStart * 5) + index)" 
-                :role="user?.role"
-                :blueName="blueName"
-                :talent="getTalent((indexStart * 5) + index)?.talent" class="md:w-full w-[calc(50%-16px)] flex-shrink-0" 
-            />
+        <div class="grid grid-cols-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-4">
+            <template v-if="followIndex">
+                <Home2TalentItem
+                    v-for="index in 15"
+                    :key="index"
+                    @onClick="$emit('onClick', (indexStart * 15) + index)" 
+                    :role="user?.role"
+                    :blueName="blueName"
+                    :talent="getTalent((indexStart * 15) + index)?.talent" class="w-full flex-shrink-0" 
+                />
+            </template>
+            <template v-else>
+                <Home2TalentItem
+                    v-for="(item, index) in homeTalents"
+                    :key="index"
+                    @onClick="$emit('onClick', (indexStart * 15) + index)" 
+                    :role="item?.role"
+                    :blueName="blueName"
+                    :talent="item" class="w-full flex-shrink-0" 
+                />
+            </template>
         </div>
     </div>
 </template>
@@ -30,6 +42,10 @@ const props = defineProps({
     indexStart: {
         type: Number,
         default: 0,
+    },
+    followIndex: {
+        type: Boolean,
+        default: true,
     },
     blueName: {
         type: Boolean,

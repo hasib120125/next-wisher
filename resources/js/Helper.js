@@ -181,6 +181,37 @@ Helper.gustClickAlert = (isLoggedIn) => {
         })
     }
 }
+Helper.asTalentClickAlert = () => {
+    let alertMessage = `
+        ${Helper.translate('A talent cannot book a video or send a tip to another talent.')} </br>
+        ${Helper.translate('If you wish to do so please create a user account. Thank you')}
+    `
+    Swal.fire({
+        title: Helper.translate('Alert!'),
+        html: alertMessage,
+        icon: 'warning',
+        confirmButtonColor: '#4acb6f',
+        cancelButtonColor: '#ef4444',
+        confirmButtonText: Helper.translate('Ok'),
+        showCancelButton: false,
+        showConfirmButton: true
+    })
+}
+Helper.unAuthAlert = () => {
+    let alertMessage = `
+        ${Helper.translate('Please login or create an account to continue.')}
+    `
+    Swal.fire({
+        title: Helper.translate('Alert!'),
+        html: alertMessage,
+        icon: 'warning',
+        confirmButtonColor: '#4acb6f',
+        cancelButtonColor: '#ef4444',
+        confirmButtonText: Helper.translate('Ok'),
+        showCancelButton: false,
+        showConfirmButton: true
+    })
+}
 
 Helper.MBSIZE = (1024 ** 2);
 Helper.MAXTIPS = 500;

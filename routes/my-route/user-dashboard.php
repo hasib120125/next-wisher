@@ -28,14 +28,12 @@ Route::get('/category/{categorySlug}', function ($slug) {
     ->whereNotNull('video_path')
     ->withAvg('rating', 'rating')
     ->get();
-
+// return $talents;
     return Inertia::render('Backend/CategoryWiseItem', compact('talents', 'category'));
 })->name('category.items');
 
 // Route::middleware(['auth', 'verified'])->group(function(){
-//     Route::get('/talents/{id}/{username?}', [TalentController::class, 'talentDetailsForUser'])->name('item.details');
 // });
-
 Route::get('/talents/{id}/{username?}', [TalentController::class, 'talentDetailsForUser'])->name('item.details');
 
 Route::middleware(['auth', 'verified', 'user-role:user'])->group(function(){
@@ -92,8 +90,7 @@ Route::any('/mobile-pay/final-status-callback-server', [UserMobilePaymentControl
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('mail-replay', [MailController::class, 'replay'])->name('mail.replay');
     // Route::get('mail-media/{path}', [MailController::class, 'getMedia'])->name('mail.getMedia');
+    Route::get('/mail-media/{path}', [MailController::class, 'getMedia'])->name('mail.getMedia');
+    Route::get('/mail-media/{path}/download/{id}', [MailController::class, 'downloadMedia'])->name('mail.downloadMedia');
     Route::get('/calendar/{calendar_id}/download', [MailController::class, 'downloadCalendar'])->name('calendar.download');
 });
-
-Route::get('/mail-media/{path}', [MailController::class, 'getMedia'])->name('mail.getMedia');
-Route::get('/mail-media/{path}/download/{id}', [MailController::class, 'downloadMedia'])->name('mail.downloadMedia');

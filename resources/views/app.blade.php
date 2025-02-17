@@ -74,18 +74,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;700&display=swap" rel="stylesheet" >
         <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" >
 
-        <!-- Google tag (gtag.js) --> 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FDE8RG36P"></script>
-        <script> 
-            window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0FDE8RG36P'); 
-        </script>
-        
-
         <!-- Scripts -->
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
-        
+
+        <!-- Google tag (gtag.js) --> 
+        {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FDE8RG36P"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0FDE8RG36P'); </script> --}}
     </head>
     <body class="antialiased">
         @inertia
